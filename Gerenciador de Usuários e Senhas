@@ -1,0 +1,39 @@
+import getpass
+base_senha = [0]
+base_user = [0]
+n_users = int(input('numero de usuários: '))
+print(30*'=')
+for i in range(n_users):
+  base_user.append(input('Cadastre seu user: '))
+  base_senha.append(int(input('Cadastre sua senha: ')))
+print(30*'=')
+login = input('Entre com o usuário: ')
+senha = int(input('Entre com a senha: '))
+print(30*'=')
+for j in range(sum(base_senha)):
+  ac_user = 0
+  ac_senha = 0
+  ind_user = 0
+  ind_senha = 0
+  for k in range(len(base_user)):
+    if base_user[k] == login:
+      ac_user += 1 #descobrir se existe o user  
+  for l in range(len(base_senha)):
+      if base_senha[l] == senha:
+        ac_senha += l #descobrir se a senha foi cadastrada  
+  if ac_user > 0 and ac_senha > 0:
+    for t in range(len(base_user)):
+      if base_user[t] == login:
+        ind_user += t
+    for s in range(len(base_senha)):
+      if base_senha[s] == senha:
+        ind_senha += s
+    if  ind_senha == ind_user:    
+      print('Bem vinda(o) {}'.format(base_user[ind_user]))
+      break
+    else:
+      print('Olá, {}! Você digitou um user ou senha errada :( '.format(login))
+      break      
+  elif ac_user == 0:
+    print('Olá, {}! Você não está cadastrada(o) como usuária(o)'.format(login))
+    break
