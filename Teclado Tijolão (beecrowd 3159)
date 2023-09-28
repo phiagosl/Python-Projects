@@ -1,0 +1,28 @@
+teclado = [[' '],['1'],['a','b','c'],['d','e','f'],['g','h','i'],['j','k','l'],
+['m','n','o'],['p','q','r','s'],['t','u','v'],['w','x','y','z']]
+n = int(input('Numero de mensagens que deseja enviar: '))
+lista = [input('escreva a {}º mensagem: '.format(_+1)) for _ in range(n)]
+for i in range(len(lista)):
+    vezestecla = 0
+    palavra = lista[i]
+    tela = ''
+    for letra in range(len(palavra)):
+        for tecla in range(len(teclado)):
+            for x in range(len(teclado[tecla])):
+                if palavra[letra] == teclado[tecla][x]:
+                    vezestecla = x+1                                       
+                    conversor = str(tecla)
+                    if conversor != tela[-1:]:
+                        tela+= conversor*vezestecla
+                    else:
+                        tela+= '*'
+                        tela+= conversor*vezestecla
+                else:
+                    mai = teclado[tecla][x]
+                    mai = mai.upper()
+                    if palavra[letra] == mai:
+                        vezestecla = x+1
+                        conversor = str(tecla)
+                        tela+= '#'
+                        tela+= conversor*vezestecla
+    print(tela)
